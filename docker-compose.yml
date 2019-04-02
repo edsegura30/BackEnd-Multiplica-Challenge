@@ -12,6 +12,7 @@ services:
      container_name: backend_django
      volumes:
        - .:/code
+       - ./devutils:/devutils
      ports:
        - "8000:8000"
      depends_on:

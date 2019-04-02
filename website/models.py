@@ -4,16 +4,6 @@ from django.db import models
 
 
 # Create your models here.
-class Event(models.Model):
-    """Event data."""
-    uuid = models.UUIDField(verbose_name='uuid')
-    name = models.CharField(
-        max_length=240)
-    location = models.CharField(max_length=100,
-                                blank=True,
-                                )
-
-
 class Reporter(models.Model):
     """Reporter of events."""
     name = models.CharField(max_length=240)
@@ -22,3 +12,15 @@ class Reporter(models.Model):
 class EventType(models.Model):
     """Type of Event."""
     name = models.CharField(max_length=100)
+
+
+class Event(models.Model):
+    """Event data."""
+    uuid = models.UUIDField(primary_key=True, verbose_name='uuid', editable=True)
+    name = models.CharField(
+        max_length=240)
+    location = models.CharField(max_length=100)
+    event_type = models.ForeignKey(EventType, on_delete=models.CASCADE)
+    reporter = models.ForeignKey(Reporter, on_delete=models.CASCADE)
+    comment = models.TextField(blank=True)
+    datetime = models.CharField(max_length=10)

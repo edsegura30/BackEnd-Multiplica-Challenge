@@ -3,7 +3,8 @@
 
 
 ## Multiplica second technical challenge.
-**Developer:** Edgar Segura
+**Developer:** Edgar
+
 **Date:** April the 1st, 2019
 
 ## Features

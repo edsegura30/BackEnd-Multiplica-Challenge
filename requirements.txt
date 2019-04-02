@@ -1,0 +1,10 @@
+dj-database-url==0.4.1
+Django==2.1.8
+gunicorn==19.6.0
+psycopg2==2.6.2
+whitenoise==3.2
+Pillow==4.0.0
+sendgrid
+django-storages==1.6.5
+boto3==1.4.7
+djangorestframework

@@ -8,11 +8,9 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-from .api_keys import SENDGRID_API
 
 import os
 import dj_database_url
-import sendgrid
 import boto3
 
 # Uncomment and follow instructions to use AWS S3
@@ -47,6 +45,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'website',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -119,8 +118,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
-SG_CLIENT = sendgrid.SendGridAPIClient(apikey=SENDGRID_API)
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)

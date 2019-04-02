@@ -1,7 +1,7 @@
 """BAckend URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.10/topics/http/urls/
+    https://docs.djangoproject.com/en/2.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -20,6 +20,4 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include(
-        'website.urls', namespace='website', app_name='website'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

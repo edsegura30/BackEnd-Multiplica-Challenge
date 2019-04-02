@@ -10,10 +10,19 @@ class EventTypeSerializer(serializers.ModelSerializer):
             'id', 'name',)
 
 
+class ReporterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reporter
+        fields = (
+            'id', 'name')
+
+
 class EventSerializer(serializers.ModelSerializer):
     event_type = EventTypeSerializer()
+    reporter = ReporterSerializer()
 
     class Meta:
         model = Event
         fields = (
-            'uuid', 'name', 'event_type', 'location', 'comment', 'datetime')
+            'uuid', 'comment', 'datetime', 'event_type',
+            'location', 'name', 'reporter',)

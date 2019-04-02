@@ -57,10 +57,39 @@ class reporters_list(generics.ListAPIView):
 
 
 class reporter_events(generics.ListAPIView):
-    """Returns the list of a reporter events"""
+    """Returns the list of a reporter events using the reporter ID as filter key"""
     serializer_class = EventSerializer
     pagination_class = DefaultEdgarPagination
 
     def get_queryset(self):
-        reporter = get_object_or_404(Reporter, pk=self.kwargs['pk'])
+        reporter = get_object_or_404(Reporter, pk=self.kwargs['reporter_id'])
         return Event.objects.filter(reporter=reporter)
+
+
+class types_list(generics.ListAPIView):
+    """Returns the list of all the event types"""
+    serializer_class = EventTypeSerializer
+    pagination_class = DefaultEdgarPagination
+
+    def get_queryset(self):
+        return EventType.objects.all()
+
+    def filter_queryset(self, queryset):
+        id = self.request.query_params.get('id', None)
+        name = self.request.query_params.get('name', None)
+        if id and len(id) > 0:
+            queryset = queryset.filter(id__contains=id)
+        if name and len(name) > 0:
+            queryset = queryset.filter(name__icontains=name)
+        return queryset
+
+
+class events_per_type(generics.ListAPIView):
+    """Returns the list of events per type using the type ID as filter key"""
+    serializer_class = EventSerializer
+    pagination_classes = DefaultEdgarPagination
+
+    def get_queryset(self):
+        type_id = self.kwargs['type_id']
+        type = get_object_or_404(EventType, id=type_id)
+        return Event.objects.filter(event_type=type)

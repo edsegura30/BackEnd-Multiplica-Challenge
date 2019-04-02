@@ -1,3 +1,6 @@
+"""
+This script is created to automate the creation of DB models from a JSON file
+"""
 import json
 
 import os
